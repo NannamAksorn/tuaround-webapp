@@ -6,9 +6,19 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "antd": "^4.0.2",
+    "leaflet": "^1.6.0",
+    "leaflet-drift-marker": "^1.0.3",
+    "leaflet-rotatedmarker": "^0.2.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-scripts": "3.4.0"
+    "react-leaflet": "^2.6.2",
+    "react-leaflet-animated-marker": "^1.0.2",
+    "react-redux": "^7.2.0",
+    "react-scripts": "3.4.0",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "socket.io-client": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
