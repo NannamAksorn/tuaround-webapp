@@ -1,0 +1,18 @@
+.IconButton {
+  display: inline-block;
+  padding: .5em;
+  cursor: pointer;
+}
+
+.IconButton:active {
+  color: var(--link);
+  padding: .7em;
+  text-decoration: underline;
+}
+
+@media only screen and ( min-width: 1268px ){
+  .IconButton:hover {
+    padding: .7em;
+    font-weight: bold;
+  }
+}

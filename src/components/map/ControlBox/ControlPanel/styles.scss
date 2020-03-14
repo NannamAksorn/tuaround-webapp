@@ -1,0 +1,12 @@
+.ControlPanel {
+  position: absolute;
+  background-color: white;
+  z-index: 1900;
+  width: 100%;
+  transition: transform .1s ease-in-out;
+}
+
+.ControlPanel__active {
+  display: block;
+  transform: translateY(calc(-100% - 5vh));
+}

@@ -1,6 +1,6 @@
 // NgvIcon.js
 import React from 'react';
-import { Popup, Tooltip } from 'react-leaflet';
+import { Popup } from 'react-leaflet';
 import {  DriftMarker } from 'leaflet-drift-marker';
 import L from 'leaflet'
 import NgvIcon from './NgvIcon';
@@ -42,3 +42,4 @@ const NgvMarker = ({ cid, route, lat, lon, bearing, status, zoomLevel }) => {
 }
 
 export default NgvMarker;
+
