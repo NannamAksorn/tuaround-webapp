@@ -20,7 +20,7 @@ function reducer(state = initialState, action) {
     case SET_STOPS:
       return { ...state, stops: action.payload };
     case SET_STOP_ETA:
-      return { ...state, stopsETA: { ...state.stopsETA, ...action.payload } };
+      return { ...state, stopsETA: { ...action.payload } };
     case SET_CUR_STOP_LISTEN:
       return {
         ...state,
