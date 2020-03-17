@@ -34,7 +34,7 @@ const NgvIcon = `
         <path stroke-linecap="null" stroke-linejoin="null" id="svg_23" d="M64 48.1V80.1z" stroke="#ffa" fill="none"/>
         <path id="svg_12" d="M40.1 6.3h22.5v3H40z" stroke-opacity="null" stroke-width="1.5" stroke="#000" fill="#fff"/>
         <path id="carno_box" d="M35.9 42h32.6v24H35.9z" stroke-width="2" stroke="#191919" fill="{carnoBoxFill}"/>
-        <text style="cursor:move" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="2em" id="carno" y="62%" x={carNoX} fill="#f9f9f9">{routeNumber}</text>
+        <text style="cursor:move" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="2em" id="carno" y="62%" x={carNoX} fill="{carnoTextColor}">{routeNumber}</text>
     </g>
 </svg>
 `;

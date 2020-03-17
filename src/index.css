@@ -17,6 +17,8 @@
   background-color: var(--tu-yellow);
   color: var(--tu-on-yellow);
 }
+/* Helper */
+.inline-block { display: inline-block; }
 
 body {
   margin: 0;

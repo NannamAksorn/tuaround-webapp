@@ -1,0 +1,70 @@
+.StopETAPanel {
+  padding: 1em;
+  width: 100vw;
+}
+
+.stationContainer {
+  text-align: center;
+}
+
+/* Arrival Prediction */
+.arrivalPrediction {
+  display: flex;
+  flex-direction: column;
+  max-height: 30vh;
+  overflow: auto;
+  /* color: white; */
+}
+.arrivalPrediction h3 {
+  line-height: 20px;
+}
+
+.estimate--card {
+  display: flex;
+  justify-content: space-between;
+  background: #66a2;
+  margin-top: 0.3em;
+  align-items: center;
+  text-align: center;
+  /* font-weight: bold; */
+}
+
+.estimate--badge {
+  padding: 0.3em;
+  line-height: 1em;
+}
+
+.estimate--time {
+  margin-right: 8%;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.car-icon-1a {
+  background: yellow;
+}
+.car-icon-1b {
+  background: lightblue;
+}
+.car-icon-2 {
+  background: pink;
+}
+.car-icon-3 {
+  background: orange;
+}
+.car-icon-4 {
+  background: green;
+  color: #ddd;
+}
+.car-icon-5 {
+  background: red;
+  color: #ddd;
+}
+
+@media only screen and (min-width: 768px) {
+  .StopETAPanel {
+    padding: 2em;
+    width: 30vw;
+    max-width: 500px;
+  }
+}
