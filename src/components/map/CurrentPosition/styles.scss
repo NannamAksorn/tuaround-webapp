@@ -4,3 +4,9 @@
   right: 5vw;
   z-index: 3100;
 }
+
+@media only screen and (min-width: 768px) {
+  .CurrentPosition {
+    top: 15vh;
+  }
+}

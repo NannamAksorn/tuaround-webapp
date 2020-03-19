@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './pages/App';
+import MapPage from './pages/MapPage/index';
 import { Provider } from 'react-redux';
 import store from './plugins/redux';
 import * as serviceWorker from './serviceWorker';
@@ -12,7 +12,7 @@ import './index.css';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <MapPage />
   </Provider>,
   document.getElementById('root'),
 );
