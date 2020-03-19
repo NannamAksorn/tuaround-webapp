@@ -1,20 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useRef, useState, useEffect } from 'react';
-import './App.css';
-import { Map, TileLayer, ImageOverlay } from 'react-leaflet';
-import { subscribeNgvGps } from '../subscribes/ngvSubscribe';
-import { connect } from 'react-redux';
+import React, { useRef, useState, useEffect } from "react";
+import "./App.css";
+import "../styles/HeaderStyles.scss";
+import { Map, TileLayer, ImageOverlay } from "react-leaflet";
+import { subscribeNgvGps } from "../subscribes/ngvSubscribe";
+import { connect } from "react-redux";
 import {
   setMapAction,
   setClickLatLonAction,
-  setMapMarkerAction,
-} from '../actions/mapAction';
-
-import NgvLayer from '../components/map/car/NgvLayer';
-import StopLayer from '../components/map/stop/StopLayer';
-import ControlBox from '../components/map/ControlBox/index';
-import { setMapMarker } from '../components/map/MapMarker/index.js';
-import { getZoomScale, getInitZoom } from '../utils';
+  setMapMarkerAction
+} from "../actions/mapAction";
+import { Row, Col } from "antd";
+import { IconButton } from "../components/main/Button/index";
+import NgvLayer from "../components/map/car/NgvLayer";
+import StopLayer from "../components/map/stop/StopLayer";
+import ControlBox from "../components/map/ControlBox/index";
+import { setMapMarker } from "../components/map/MapMarker/index.js";
+import { getZoomScale, getInitZoom } from "../utils";
 
 const mapStateToProps = () => ({});
 // const mapStateToProps = ({ ngv }) => {
@@ -26,11 +28,54 @@ const mapStateToProps = () => ({});
 function App({ dispatch }) {
   const INIT_LOCATION = [14.071, 100.605];
   // Get Window Size
+
+  const MONTHS = [
+    "JAN",
+    "FEB",
+    "MAR",
+    "APR",
+    "MAY",
+    "JUN",
+    "JUL",
+    "AUG",
+    "SEP",
+    "OCT",
+    "NOV",
+    "DEC"
+  ];
+  const DAY_OF_WEEKS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+  function showTime() {
+    const date = new Date();
+    let h = date.getHours(); // 0 - 23
+    let m = date.getMinutes(); // 0 - 59
+    let s = date.getSeconds(); // 0 - 59
+    const dayOfWeek = DAY_OF_WEEKS[date.getDay()];
+    const year = date.getFullYear();
+    const month = MONTHS[date.getMonth()];
+    const day = date.getDate();
+
+    h = h < 10 ? `0${h}` : h;
+    m = m < 10 ? `0${m}` : m;
+    s = s < 10 ? `0${s}` : s;
+
+    const time = `${h}:${m}:${s}`;
+    const dateDisplay = `${dayOfWeek}, ${day} ${month} ${year}`;
+    if (document.getElementById("MyClockDisplay")) {
+      document.getElementById("MyClockDisplay").innerText = time;
+      document.getElementById("MyClockDisplay").textContent = time;
+    }
+    if (document.getElementById("MyClockDisplay--date")) {
+      document.getElementById("MyClockDisplay--date").textContent = dateDisplay;
+    }
+
+    setTimeout(showTime, 1000);
+  }
+
   function getSize() {
-    const isClient = typeof window === 'object';
+    const isClient = typeof window === "object";
     return {
       width: isClient ? window.innerWidth : undefined,
-      height: isClient ? window.innerHeight : undefined,
+      height: isClient ? window.innerHeight : undefined
     };
   }
   const [windowSize, setWindowSize] = useState(getSize);
@@ -46,7 +91,7 @@ function App({ dispatch }) {
 
   // Subscribe Ngv
   useEffect(() => {
-    const isClient = typeof window === 'object';
+    const isClient = typeof window === "object";
     if (!isClient) {
       return false;
     }
@@ -55,8 +100,8 @@ function App({ dispatch }) {
       setWindowSize(getSize());
     }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // set on zoom listener && Click Marker
@@ -71,7 +116,7 @@ function App({ dispatch }) {
       dispatch(setMapMarkerAction(MapMarker));
 
       dispatch(setMapAction(mapEl));
-      mapEl.on('zoomend', e => {
+      mapEl.on("zoomend", e => {
         const z = e.target._zoom;
         setIconScale(getZoomScale(z));
       });
@@ -85,6 +130,67 @@ function App({ dispatch }) {
 
   return (
     <div className="App">
+      <div className="TitleBox TU--Red">
+        {/* Config Stop */}
+        {/* Left side */}
+        <div className="logo-container">
+          <div className="logo">
+            <img src={require("./tu-logo.png")} alt="tu-logo" />
+          </div>
+          <div className="title">
+            <h3>Thammasat University Transportation</h3>
+          </div>
+        </div>
+
+        {/* Right side */}
+        <div className="right-container">
+          <div className="info-container" onload={showTime()}>
+            <div className="clock-container">
+              <div className="date" id="MyClockDisplay--date">
+                clock
+              </div>
+              <div id="MyClockDisplay" className="time"></div>
+            </div>
+
+            <div className="forecast-container">
+              {/******  replace this **********/}
+              <div className="temp-icon">
+                <img
+                  class="mr-4"
+                  src={require("./temp.svg")}
+                  alt="temp"
+                  width="25px"
+                />
+              </div>
+            </div>
+
+            <div className="weather-container">
+              <div className="temp-container">
+                <div className="temp-icon">
+                  <img
+                    class="mr-4"
+                    src={require("./temp.svg")}
+                    alt="temp"
+                    width="25px"
+                  />
+                </div>
+                <div className="temp-info">30°C</div>
+              </div>
+              <div className="rain-container">
+                <div className="rain-icon">
+                  <img
+                    class="mr-4"
+                    src={require("./raining.svg")}
+                    alt="raining"
+                    width="25px"
+                  />
+                </div>
+                <div className="rain-info"> 0%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <Map
         ref={mapRef}
         center={INIT_LOCATION}
