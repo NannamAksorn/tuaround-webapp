@@ -19,9 +19,11 @@ const Header = () => {
 
       {/* Right side */}
       <div className="right-container">
-        <div className="info-container">
+        <div className="info-time-container">
           {/* DATE TIME */}
           <DateTime />
+        </div>
+        <div className="info-weather-container">
           {/* WEATHER */}
           <Weather />
         </div>

@@ -3,7 +3,7 @@ import React from 'react';
 //import lottie from 'lottie-web';
 import Lottie from 'react-lottie';
 import * as animationData from './pinjump.json'
-
+var currentPath = require("./weather/clear-night.json");
 
 async function fetchWeather() {
   const weatherIcon = document.getElementById('MyWeatherIcon');
@@ -57,7 +57,7 @@ async function fetchWeather() {
     // if (document.getElementById('MyWeatherIcon').innerHTML) {
     //   lottieWeatherIcon.destroy();
     // }
-    // console.log(data.currently.icon)
+    console.log(data.currently.icon)
     // lottieWeatherIcon = lottie.loadAnimation({
     //   container: document.getElementById('MyWeatherIcon'),
     //   renderer: 'svg',
@@ -68,6 +68,7 @@ async function fetchWeather() {
     //     clearCanvas: true,
     //   },
     // });
+    currentPath = require(`./weather/${data.currently.icon}.json`);
   }
 }
 
@@ -80,7 +81,8 @@ function autofetchWeather() {
 const defaultOptions = {
   loop: true,
   autoplay: true,
-  animationData: animationData,
+  animationData: currentPath,
+  //path: `./weather/clear-night.json`,
   rendererSettings: {
     preserveAspectRatio: 'xMidYMid slice'
   }
@@ -96,8 +98,8 @@ const Weather = () => {
           <div id="MyWeatherIcon" >
 
             <Lottie options={defaultOptions}
-              height={40}
-              width={40}
+              height={80}
+              width={80}
               isStopped={false}
               isPaused={false} />
           </div>

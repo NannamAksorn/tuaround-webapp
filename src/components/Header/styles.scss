@@ -47,12 +47,21 @@
   flex-direction: column;
 }
 
-.info-container {
+.info-time-container {
   height: 100%;
   display: flex;
   flex-direction: row;
-  align-self: flex-end;
+  padding-top: 20px;
   width: 45%;
+}
+.info-weather-container {
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 100px;
+  align-self: flex-end;
+  width: 60%;
+  margin-top:-30px;
 }
 
 .clock-container {
@@ -60,11 +69,11 @@
 }
 
 .clock-container .date {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .clock-container .time {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .forecast-container {
@@ -95,4 +104,53 @@
 
 .rain-container .rain-icon {
   margin: 0 10%;
+}
+
+
+@media only screen and (max-width: 1378px) {
+  .clock-container .date {
+    font-size: 1.2em;
+  }
+  
+  .clock-container .time {
+    font-size: 1.2em;
+  }
+}
+
+@media only screen and (max-width: 912px) {
+  .clock-container .date {
+    font-size: 1em;
+  }
+  
+  .clock-container .time {
+    font-size: 1em;
+  }
+  .logo-container .title h3 {
+    margin: 0;
+    font-size: 1.5em;
+    align-self: center;
+    color: white;
+    
+  }
+  .logo-container .logo {
+    margin: 0 5%;
+    width:40;
+    height:40;
+  }
+  .info-time-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+    width: 5%;
+  }
+  .info-weather-container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding-left:10px;
+    margin-top:-50px;
+ 
+    width: 80%;
+  }
 }
