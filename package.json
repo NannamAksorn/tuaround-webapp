@@ -57,6 +57,7 @@
     "react-leaflet": "^2.6.2",
     "react-leaflet-animated-marker": "^1.0.2",
     "react-leaflet-rotatedmarker": "^0.1.0",
+    "react-lottie": "^1.2.3",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
