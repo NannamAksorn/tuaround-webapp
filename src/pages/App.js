@@ -17,6 +17,7 @@ import StopLayer from "../components/map/stop/StopLayer";
 import ControlBox from "../components/map/ControlBox/index";
 import { setMapMarker } from "../components/map/MapMarker/index.js";
 import { getZoomScale, getInitZoom } from "../utils";
+import lottie from 'lottie-web';
 
 const mapStateToProps = () => ({});
 // const mapStateToProps = ({ ngv }) => {
@@ -44,6 +45,16 @@ function App({ dispatch }) {
     "DEC"
   ];
   const DAY_OF_WEEKS = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
+  let lottieWeatherIcon = lottie.loadAnimation({
+    container: document.getElementById('MyWeatherIcon'),
+    renderer: 'svg',
+    loop: true,
+    autoplay: true,
+    path: `public/weather/clear-day.json`,
+    rendererSetting: {
+      clearCanvas: true
+    }
+  })
   function showTime() {
     const date = new Date();
     let h = date.getHours(); // 0 - 23
@@ -69,6 +80,30 @@ function App({ dispatch }) {
     }
 
     setTimeout(showTime, 1000);
+  }
+
+  async function fetchWeather() {
+    console.log("fetchWeather")
+    const res = await fetch('http://tuaround.com:4435/api/weather')
+    const data = await res.json();
+    if (document.getElementById('MyWeatherTemp')) {
+      document.getElementById('MyWeatherTemp').innerText = data.currently.apparentTemperature.toFixed(0) + '°C'
+    }
+    if (document.getElementById('MyWeatherPrecip')) {
+      document.getElementById('MyWeatherPrecip').innerText = (data.currently.precipProbability * 100).toFixed(0) + '%'
+    }
+    lottieWeatherIcon.destroy()
+    lottieWeatherIcon = lottie.loadAnimation({
+      container: document.getElementById('MyWeatherIcon'),
+      renderer: 'svg',
+      loop: true,
+      autoplay: true,
+      path: `public/weather/${data.currently.icon}.json`,
+      rendererSetting: {
+        clearCanvas: true
+      }
+    })
+    return 0;
   }
 
   function getSize() {
@@ -144,8 +179,8 @@ function App({ dispatch }) {
 
         {/* Right side */}
         <div className="right-container">
-          <div className="info-container" onload={showTime()}>
-            <div className="clock-container">
+          <div className="info-container" onLoad={fetchWeather()}>
+            <div className="clock-container" onLoad={showTime()}>
               <div className="date" id="MyClockDisplay--date">
                 clock
               </div>
@@ -156,7 +191,7 @@ function App({ dispatch }) {
               {/******  replace this **********/}
               <div className="temp-icon">
                 <img
-                  class="mr-4"
+                  className="mr-4"
                   src={require("./temp.svg")}
                   alt="temp"
                   width="25px"
@@ -168,22 +203,26 @@ function App({ dispatch }) {
               <div className="temp-container">
                 <div className="temp-icon">
                   <img
-                    class="mr-4"
+                    className="mr-4"
                     src={require("./temp.svg")}
                     alt="temp"
                     width="25px"
                   />
+                  <div id="MyWeatherTemp" className="weather--temp">30°C</div>
+
                 </div>
                 <div className="temp-info">30°C</div>
               </div>
               <div className="rain-container">
                 <div className="rain-icon">
                   <img
-                    class="mr-4"
+                    className="mr-4"
                     src={require("./raining.svg")}
                     alt="raining"
                     width="25px"
                   />
+                  <div id="MyWeatherPrecip" className="weather--temp">0%</div>
+
                 </div>
                 <div className="rain-info"> 0%</div>
               </div>
@@ -206,7 +245,7 @@ function App({ dispatch }) {
           url="/img/map/tu-render.png"
           bounds={imageBounds}
           zIndex={5}
-          // opacity={0.89}
+        // opacity={0.89}
         />
         <NgvLayer iconScale={iconScale} />
         {/* Stop Layer */}
