@@ -1,16 +1,11 @@
 :root {
-  --tu-red: #C3002F;
+  --tu-red: #c3002f;
   --tu-on-red: #fff;
 
   --tu-yellow: #ffd13f;
   --tu-on-yellow: #000;
 
-  --link: #0645AD;
-}
-
-.TU--Red {
-  background-color: var(--tu-red);
-  color: var(--tu-on-red);
+  --link: #0645ad;
 }
 
 .TU--Yellow {
@@ -18,13 +13,15 @@
   color: var(--tu-on-yellow);
 }
 /* Helper */
-.inline-block { display: inline-block; }
+.inline-block {
+  display: inline-block;
+}
 
 body {
   margin: 0;
   font-size: 13px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -32,7 +29,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 

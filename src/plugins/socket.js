@@ -1,17 +1,18 @@
-import io from 'socket.io-client';
+import io from "socket.io-client";
 
-let url = '//127.0.0.1:4435/';
-let path = '/socket.io';
-if (process.env.NODE_ENV === 'production') {
-  url = '/';
-  path = '/api/socket.io';
+let url = "//127.0.0.1:4435/";
+//let url = "//tuaround.com:4435/";
+let path = "/socket.io";
+if (process.env.NODE_ENV === "production") {
+  url = "/";
+  path = "/api/socket.io";
 }
 
 const socket = io(url, {
   secure: true,
-  path,
+  path
 });
-socket.on('disconnect', () => {
+socket.on("disconnect", () => {
   socket.open();
 });
 
