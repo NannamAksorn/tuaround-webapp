@@ -35,10 +35,10 @@ function App({ dispatch }) {
   // Get Window Size
 
   function getSize() {
-    const isClient = typeof window === 'object';
+    const isClient = typeof window === "object";
     return {
       width: isClient ? window.innerWidth : undefined,
-      height: isClient ? window.innerHeight : undefined,
+      height: isClient ? window.innerHeight : undefined
     };
   }
   const [windowSize, setWindowSize] = useState(getSize);
@@ -54,7 +54,7 @@ function App({ dispatch }) {
 
   // Subscribe Ngv
   useEffect(() => {
-    const isClient = typeof window === 'object';
+    const isClient = typeof window === "object";
     if (!isClient) {
       return false;
     }
@@ -63,8 +63,8 @@ function App({ dispatch }) {
       setWindowSize(getSize());
     }
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // set on zoom listener && Click Marker
@@ -79,7 +79,7 @@ function App({ dispatch }) {
       dispatch(setMapMarkerAction(MapMarker));
 
       dispatch(setMapAction(mapEl));
-      mapEl.on('zoomend', e => {
+      mapEl.on("zoomend", e => {
         const z = e.target._zoom;
         setIconScale(getZoomScale(z));
       });
