@@ -11,7 +11,8 @@ const mapStateToProps = ({ stop }) => ({
 });
 
 const StopETAPanel = ({ dispatch, stopsETA, curStop }) => {
-  const { name_en, name_th } = curStop;
+  // const { name_en, name_th } = curStop;
+  const { name_en } = curStop;
   const ETALists = Object.values(stopsETA).map(({ i, t, k }) => {
     if (t < 60) {
       return (

@@ -4,7 +4,7 @@ import { Button, Tooltip } from 'antd';
 import { AimOutlined } from '@ant-design/icons';
 import './styles.scss';
 import { connect } from 'react-redux';
-import { CircleMarker, Marker } from 'react-leaflet';
+import { CircleMarker } from 'react-leaflet';
 import CurrentPositionIcon from './CurrentPositionIcon';
 import RotatedMarker from '../RotatedMarker';
 

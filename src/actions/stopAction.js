@@ -55,6 +55,7 @@ export const fetchStopEtaAction = sid => async dispatch => {
   tuaInstance.get(`/stops/${sid}/eta`).then(res => {
     dispatch(setStopETAAction(res.data));
   });
+  subscribeStopETA(sid, res => dispatch(setStopETAAction(res)));
 };
 
 export const clickStopAction = payload => (dispatch, getState) => {
@@ -64,9 +65,8 @@ export const clickStopAction = payload => (dispatch, getState) => {
     type: SET_CUR_STOP_LISTEN,
     payload,
   });
-  dispatch(fetchStopEtaAction(payload));
   unsubscribeStopETA(curStopListen);
-  subscribeStopETA(dispatch, payload);
+  dispatch(fetchStopEtaAction(payload));
 };
 
 export const setStopETAAction = payload => {

@@ -1,9 +1,19 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import './styles.scss';
 import DateTime from '@/components/Header/DateTime';
 import Weather from '@/components/Header/Weather/index';
+import { fetchWeatherAction } from '../../actions/infoAction';
 
-const Header = () => {
+const mapStateToProps = ({ info }) => ({
+  weatherData: info.weather,
+});
+
+const Header = ({ dispatch, weatherData }) => {
+  useEffect(() => {
+    dispatch(fetchWeatherAction());
+  }, []);
   return (
     <div className="TitleBox TU--Red">
       {/* Config Stop */}
@@ -23,11 +33,11 @@ const Header = () => {
           {/* DATE TIME */}
           <DateTime />
           {/* WEATHER */}
-          <Weather />
+          <Weather data={weatherData} />
         </div>
       </div>
     </div>
   );
 };
 
-export default Header;
+export default connect(mapStateToProps)(Header);

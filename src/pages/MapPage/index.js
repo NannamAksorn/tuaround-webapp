@@ -2,17 +2,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import './styles.css';
 import { Map, TileLayer, ImageOverlay } from 'react-leaflet';
-import { subscribeNgvGps } from '../../subscribes/ngvSubscribe';
+import { fetchNgvGpsAction } from '../../actions/ngvAction';
 import { connect } from 'react-redux';
 import {
   setMapAction,
   setClickLatLonAction,
   setMapMarkerAction,
 } from '../../actions/mapAction';
-
-import { Row, Col } from 'antd';
-
-import { IconButton } from '@/components/main/Button/index';
 
 import CurrentPosition from '@/components/map/CurrentPosition';
 import NgvLayer from '@/components/map/car/NgvLayer';
@@ -35,10 +31,10 @@ function App({ dispatch }) {
   // Get Window Size
 
   function getSize() {
-    const isClient = typeof window === "object";
+    const isClient = typeof window === 'object';
     return {
       width: isClient ? window.innerWidth : undefined,
-      height: isClient ? window.innerHeight : undefined
+      height: isClient ? window.innerHeight : undefined,
     };
   }
   const [windowSize, setWindowSize] = useState(getSize);
@@ -54,17 +50,17 @@ function App({ dispatch }) {
 
   // Subscribe Ngv
   useEffect(() => {
-    const isClient = typeof window === "object";
+    const isClient = typeof window === 'object';
     if (!isClient) {
       return false;
     }
-    subscribeNgvGps(dispatch);
+    dispatch(fetchNgvGpsAction());
     function handleResize() {
       setWindowSize(getSize());
     }
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // set on zoom listener && Click Marker
@@ -79,7 +75,7 @@ function App({ dispatch }) {
       dispatch(setMapMarkerAction(MapMarker));
 
       dispatch(setMapAction(mapEl));
-      mapEl.on("zoomend", e => {
+      mapEl.on('zoomend', e => {
         const z = e.target._zoom;
         setIconScale(getZoomScale(z));
       });
@@ -109,7 +105,7 @@ function App({ dispatch }) {
           url="/img/map/tu-render.png"
           bounds={imageBounds}
           zIndex={5}
-        // opacity={0.89}
+          // opacity={0.89}
         />
         <NgvLayer iconScale={iconScale} />
         {/* Stop Layer */}

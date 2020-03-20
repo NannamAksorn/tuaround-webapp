@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import './styles.scss';
 import { postStopAction } from '@/actions/stopAction';
