@@ -97,15 +97,23 @@ function App({ dispatch }) {
         zoomControl={false}
         onClick={handleMapClick}
       >
-        <TileLayer
+        {/* <TileLayer
           url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        /> */}
+        <TileLayer
+          url="https://api.mapbox.com/styles/v1/tuarounddev/ck82q9hh20a251iqmdf0652xy/tiles/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHVhcm91bmRkZXYiLCJhIjoiY2s4Mm1kbWQ5MG5leDNlcDR4aGU1dzNqZyJ9.0L673kn60pl3lU-q_sntuA"
+          attribution='&copy; <a href="http://osm.org/copyright">mapbox</a> contributors'
         />
+        {/* <TileLayer
+          url="https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}@2x.jpg?access_token=pk.eyJ1IjoidHVhcm91bmRkZXYiLCJhIjoiY2s4Mm1kbWQ5MG5leDNlcDR4aGU1dzNqZyJ9.0L673kn60pl3lU-q_sntuA"
+          attribution='&copy; <a href="http://osm.org/copyright">mapbox</a> contributors'
+        /> */}
         <ImageOverlay
           url="/img/map/tu-render.png"
           bounds={imageBounds}
           zIndex={5}
-          // opacity={0.89}
+          opacity={0.89}
         />
         <NgvLayer iconScale={iconScale} />
         {/* Stop Layer */}
