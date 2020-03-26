@@ -11,7 +11,7 @@ class Weather extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPath: require(`./weather/clear-night.json`)
+      currentPath: require(`./weather/clear-day.json`)
     };
   }
   async fetchWeather() {
