@@ -45,8 +45,12 @@ class Weather extends React.Component {
       //body: opt.body || ''
     };
     const res = await fetch(
-      "https://api.darksky.net/forecast/56d11b10e025f7cd93cc31496fba4cb6/14.0717,%20100.60205?units=si",
+      //"https://api.darksky.net/forecast/56d11b10e025f7cd93cc31496fba4cb6/14.0717,%20100.60205?units=si",
+      //"https://dev.tuaround.com/api/weather",
+      "/api/weather",
       sentData
+
+
     );
     console.log(res);
     const data = await res.json();
