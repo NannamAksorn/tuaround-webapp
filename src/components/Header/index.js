@@ -23,17 +23,22 @@ const Header = ({ dispatch, weatherData }) => {
           <img src="/img/tu-logo.png" alt="tu-logo" />
         </div>
         <div className="title">
-          <span className="headline">Thammasat University Transportation</span>
+          {/* <span className="headline">Thammasat University Transportation</span> */}
+          <h3>Thammasat University Transportation</h3>
         </div>
       </div>
 
       {/* Right side */}
       <div className="right-container">
-        <div className="info-container">
-          {/* DATE TIME */}
-          <DateTime />
-          {/* WEATHER */}
-          <Weather data={weatherData} />
+        <div className="sub-container">
+          <div className="info-time-container">
+            {/* DATE TIME */}
+            <DateTime />
+          </div>
+          <div className="info-weather-container">
+            {/* WEATHER */}
+            <Weather data={weatherData} />
+          </div>
         </div>
       </div>
     </div>

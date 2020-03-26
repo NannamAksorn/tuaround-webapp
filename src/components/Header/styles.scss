@@ -16,28 +16,32 @@
 
 // Logo Container (Left)
 .logo-container {
-  height: 100%;
+  max-height: 100%;
   display: flex;
   flex-direction: row;
   width: 50%;
 }
 
 .logo-container img {
-  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .logo-container .logo {
-  margin: 0 5%;
+  width: 20%;
+  height: 100%;
+  margin: auto 2% auto 5%;
 }
 
 .logo-container .title {
-  height: 100%;
+  max-height: 100%;
   display: flex;
+  width: 70%;
 }
 
 .logo-container .title h3 {
   margin: 0;
-  font-size: 2.5em;
+  font-size: 2em;
   align-self: center;
   color: white;
 }
@@ -49,14 +53,32 @@
   width: 50%;
   align-items: flex-start;
   flex-direction: column;
+  position: relative;
+  display: flex;
 }
 
-.info-container {
+.sub-container {
+  position: absolute;
+  right: 0;
+  margin: 0 5%;
   height: 100%;
+  width: 60%;
   display: flex;
   flex-direction: row;
-  align-self: flex-end;
-  width: 45%;
+}
+
+.info-time-container {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+.info-weather-container {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  //margin: 0 5%;
 }
 
 .clock-container {
@@ -64,41 +86,273 @@
 }
 
 .clock-container .date {
-  font-size: 2em;
+  font-size: 1.4em;
 }
 
 .clock-container .time {
-  font-size: 2em;
+  font-size: 1.4em;
 }
 
 .forecast-container {
   margin: 0 5%;
   align-self: center;
+  height: 100%;
+  display: flex;
+}
+
+#MyWeatherIcon {
+  height: 80%;
+  width: 60%;
+  align-self: center;
+  margin: 0 auto;
 }
 
 .weather-container {
   margin: 0 5%;
   align-self: center;
+  height: 100%;
+  display: flex;
 }
 
+.weather-container .sub-container2 {
+  align-self: center;
+}
 .temp-container {
   display: flex;
   flex-direction: row;
-  margin: 20% 0;
+  margin-bottom: 10%;
 }
 
 .temp-container .temp-icon {
   margin: 0 10%;
+  height: 100%;
+}
+
+.temp-container .temp-icon img {
+  width: 20px;
 }
 
 .rain-container {
   display: flex;
   flex-direction: row;
-  margin: 20% 0;
 }
 
 .rain-container .rain-icon {
   margin: 0 10%;
+  height: 100%;
+}
+
+.rain-container .rain-icon img {
+  width: 20px;
+}
+
+.temp-container .temp-info p {
+  margin: 0;
+}
+
+.rain-container .rain-info p {
+  margin: 0;
+}
+
+// xl size
+@media screen and (max-width: 1366px) {
+  .logo-container .title h3 {
+    font-size: 1.7em;
+  }
+
+  .clock-container .date {
+    font-size: 1.25em;
+  }
+  .clock-container .time {
+    font-size: 1.25em;
+  }
+
+  #MyWeatherIcon {
+    height: 70%;
+  }
+}
+
+// l size
+@media only screen and (max-width: 1140px) {
+  .sub-container {
+    width: 65%;
+  }
+}
+
+@media only screen and (max-width: 996px) {
+  .logo-container .title h3 {
+    font-size: 1.5em;
+  }
+  .clock-container .date {
+    font-size: 1.1em;
+  }
+  .clock-container .time {
+    font-size: 1.1em;
+  }
+}
+
+@media only screen and (max-width: 881px) {
+  .logo-container .title h3 {
+    font-size: 1.3em;
+  }
+  .clock-container .date {
+    font-size: 1em;
+  }
+  .clock-container .time {
+    font-size: 1em;
+  }
+  #MyWeatherIcon {
+    height: 70%;
+    width: 100%;
+    align-self: center;
+  }
+}
+
+// m size
+@media only screen and (max-width: 780px) {
+  .sub-container {
+    width: 70%;
+  }
+
+  .logo-container .title h3 {
+    font-size: 1.2em;
+  }
+
+  .clock-container .date {
+    font-size: 0.85em;
+  }
+  .clock-container .time {
+    font-size: 0.85em;
+  }
+
+  #MyWeatherIcon {
+    height: 50%;
+    //width: 60%;
+  }
+}
+@media only screen and (max-width: 570px) {
+  .sub-container {
+    width: 80%;
+  }
+  .logo-container .title h3 {
+    font-size: 1em;
+  }
+  .clock-container .date {
+    font-size: 0.8em;
+  }
+  .clock-container .time {
+    font-size: 0.8em;
+  }
+  #MyWeatherIcon {
+    height: 40%;
+  }
+
+  .temp-container .temp-icon img {
+    width: 17px;
+  }
+  .rain-container .rain-icon img {
+    width: 17px;
+  }
+
+  .temp-container .temp-info p {
+    font-size: 0.9em;
+  }
+
+  .rain-container .rain-info p {
+    font-size: 0.9em;
+  }
+}
+
+// s size
+@media only screen and (max-width: 480px) {
+  .logo-container .logo {
+    //ไม่อยู่ตรงกลางหง่ะ ):
+    margin: auto 2% auto 5%;
+    //height: 100%;
+    width: 5em;
+  }
+
+  .logo-container .title {
+    width: 0;
+  }
+  .logo-container .title h3 {
+    font-size: 0em;
+  }
+
+  .right-container .sub-container {
+    display: flex;
+    flex-direction: column;
+    padding: 5% 0;
+    height: 100%;
+  }
+
+  .info-time-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .clock-container .date {
+    font-size: 0.7em;
+  }
+  .clock-container .time {
+    font-size: 0.7em;
+  }
+
+  .info-weather-container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .forecast-container {
+    margin: 0;
+    width: 10%;
+  }
+  #MyWeatherIcon {
+    height: 65%;
+    width: 100%;
+  }
+
+  .weather-container .sub-container2 {
+    display: flex;
+    align-self: center;
+  }
+
+  .temp-container {
+    margin: 0;
+  }
+
+  .rain-container {
+    margin: 0;
+  }
+
+  .temp-container #MyWeatherTemp {
+    display: flex;
+    align-self: center;
+  }
+
+  .temp-container .temp-icon img {
+    width: 13px;
+  }
+
+  .rain-container {
+    margin-left: 10%;
+  }
+
+  .rain-container #MyWeatherPrecip {
+    display: flex;
+    align-self: center;
+  }
+
+  .rain-container .rain-icon img {
+    width: 13px;
+  }
+
+  .temp-container .temp-info p {
+    font-size: 0.7em;
+  }
+
+  .rain-container .rain-info p {
+    font-size: 0.7em;
+  }
 }
 
 @media only screen and (min-width: 768px) {
