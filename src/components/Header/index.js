@@ -15,15 +15,15 @@ const Header = ({ dispatch, weatherData }) => {
     dispatch(fetchWeatherAction());
   }, []);
   return (
-    <div className="TitleBox TU--Red">
+    <div className="Header TU--Red">
       {/* Config Stop */}
       {/* Left side */}
       <div className="logo-container">
         <div className="logo">
-          <img src={'/img/tu-logo.png'} alt="tu-logo" />
+          <img src="/img/tu-logo.png" alt="tu-logo" />
         </div>
         <div className="title">
-          <h3>Thammasat University Transportation</h3>
+          <span className="headline">Thammasat University Transportation</span>
         </div>
       </div>
 

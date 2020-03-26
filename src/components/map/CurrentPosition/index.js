@@ -3,10 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { Button, Tooltip } from 'antd';
 import { AimOutlined } from '@ant-design/icons';
 import './styles.scss';
+import Control from 'react-leaflet-control';
 import { connect } from 'react-redux';
 import { CircleMarker } from 'react-leaflet';
 import CurrentPositionIcon from './CurrentPositionIcon';
 import RotatedMarker from '../RotatedMarker';
+import { setCurrentPositionAction } from '@/actions/mapAction';
 
 const mapStateToProps = ({ map }) => ({
   mapEl: map.mapEl,
@@ -19,6 +21,7 @@ const CurrentPosition = ({ dispatch, mapEl }) => {
   const onChange = ({ coords }) => {
     const { latitude: lat, longitude: lon, accuracy, heading, speed } = coords;
     setPosition({ lat, lon, accuracy, heading, speed });
+    dispatch(setCurrentPositionAction({ lat, lon, accuracy, heading, speed }));
   };
 
   const onError = error => {
@@ -49,7 +52,8 @@ const CurrentPosition = ({ dispatch, mapEl }) => {
 
   return (
     <>
-      <div className="CurrentPosition">
+      {/* <div className="CurrentPosition"> */}
+      <Control position="topright">
         <Tooltip title={error ? 'Please Enable Location' : 'Your Location'}>
           <Button
             disabled={error}
@@ -58,7 +62,8 @@ const CurrentPosition = ({ dispatch, mapEl }) => {
             size="large"
           />
         </Tooltip>
-      </div>
+      </Control>
+      {/* </div> */}
       {/* Shadow */}
       <CircleMarker
         interactive={false}

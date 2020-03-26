@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'antd';
 import './styles.scss';
 import { setModeAction } from '@/actions/mapAction';
+import { setDirectionFromStopAction } from '@/actions/directionAction';
 import { CP_NORMAL } from '../../ControlPanel/index';
 
 const mapStateToProps = ({ stop }) => ({
@@ -33,6 +34,10 @@ const StopETAPanel = ({ dispatch, stopsETA, curStop }) => {
     dispatch(setModeAction(CP_NORMAL));
   };
 
+  const handleDirectionPress = () => {
+    dispatch(setDirectionFromStopAction());
+  };
+
   return (
     <div className="StopETAPanel TU--Yellow">
       <Button
@@ -51,6 +56,9 @@ const StopETAPanel = ({ dispatch, stopsETA, curStop }) => {
         {/* <h3>{name_th}</h3> */}
         <h4>{name_en}</h4>
       </div>
+      <Button type="primary" onClick={handleDirectionPress}>
+        Direction
+      </Button>
       <hr />
       {/* Arrival Prediction*/}
       <div className="arrivalPrediction">

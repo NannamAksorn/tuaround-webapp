@@ -1,16 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useRef, useState, useEffect } from 'react';
 import './styles.css';
-import { Map, TileLayer, ImageOverlay } from 'react-leaflet';
+import { Map } from 'react-leaflet';
 import { fetchNgvGpsAction } from '../../actions/ngvAction';
 import { connect } from 'react-redux';
 import {
-  setMapAction,
+  initMapAction,
   setClickLatLonAction,
   setMapMarkerAction,
 } from '../../actions/mapAction';
 
+import MapTile from '@/components/map/MapTile';
 import CurrentPosition from '@/components/map/CurrentPosition';
+
 import NgvLayer from '@/components/map/car/NgvLayer';
 import StopLayer from '@/components/map/stop/StopLayer';
 import ControlBox from '@/components/map/ControlBox/index';
@@ -43,11 +45,6 @@ function App({ dispatch }) {
   const { width } = windowSize;
   let INIT_ZOOM = getInitZoom(width);
 
-  //  Initial Zoom Location
-  const bottomLeft = [14.06453, 100.588749];
-  const topRight = [14.080178, 100.620275];
-  const imageBounds = [bottomLeft, topRight];
-
   // Subscribe Ngv
   useEffect(() => {
     const isClient = typeof window === 'object';
@@ -74,7 +71,7 @@ function App({ dispatch }) {
       const MapMarker = setMapMarker(INIT_LOCATION, mapEl);
       dispatch(setMapMarkerAction(MapMarker));
 
-      dispatch(setMapAction(mapEl));
+      dispatch(initMapAction(mapEl));
       mapEl.on('zoomend', e => {
         const z = e.target._zoom;
         setIconScale(getZoomScale(z));
@@ -95,31 +92,21 @@ function App({ dispatch }) {
         center={INIT_LOCATION}
         zoom={INIT_ZOOM}
         zoomControl={false}
+        zoomSnap={0}
+        zoomDelta={0.1}
         onClick={handleMapClick}
       >
         {/* <TileLayer
           url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         /> */}
-        <TileLayer
-          url="https://api.mapbox.com/styles/v1/tuarounddev/ck82q9hh20a251iqmdf0652xy/tiles/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoidHVhcm91bmRkZXYiLCJhIjoiY2s4Mm1kbWQ5MG5leDNlcDR4aGU1dzNqZyJ9.0L673kn60pl3lU-q_sntuA"
-          attribution='&copy; <a href="http://osm.org/copyright">mapbox</a> contributors'
-        />
-        {/* <TileLayer
-          url="https://api.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}@2x.jpg?access_token=pk.eyJ1IjoidHVhcm91bmRkZXYiLCJhIjoiY2s4Mm1kbWQ5MG5leDNlcDR4aGU1dzNqZyJ9.0L673kn60pl3lU-q_sntuA"
-          attribution='&copy; <a href="http://osm.org/copyright">mapbox</a> contributors'
-        /> */}
-        <ImageOverlay
-          url="/img/map/tu-render.png"
-          bounds={imageBounds}
-          zIndex={5}
-          opacity={0.89}
-        />
         <NgvLayer iconScale={iconScale} />
         {/* Stop Layer */}
         <StopLayer iconScale={iconScale} />
         {/* Current Position */}
         <CurrentPosition />
+        {/* MapTile */}
+        <MapTile />
       </Map>
       {/* Controll Box */}
       <ControlBox />

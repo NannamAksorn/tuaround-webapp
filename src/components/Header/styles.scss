@@ -1,5 +1,5 @@
 // Header Red Container
-.TitleBox {
+.Header {
   position: absolute;
   width: 100%;
   top: 0;
@@ -8,6 +8,10 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  overflow: hidden;
+}
+.headline {
+  font-size: 1rem;
 }
 
 // Logo Container (Left)
@@ -95,4 +99,10 @@
 
 .rain-container .rain-icon {
   margin: 0 10%;
+}
+
+@media only screen and (min-width: 768px) {
+  .headline {
+    font-size: 2rem;
+  }
 }

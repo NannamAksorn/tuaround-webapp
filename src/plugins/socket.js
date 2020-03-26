@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 
-let url = '//127.0.0.1:4435/';
+let url = process.env.REACT_APP_SOCKET_URL;
 // let url = '//35.247.160.85:4435/';
 let path = '/socket.io';
 if (process.env.NODE_ENV === 'production') {

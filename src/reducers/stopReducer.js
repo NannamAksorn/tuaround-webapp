@@ -25,7 +25,7 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         curStopListen: action.payload,
-        curStop: state.stops.find(({ id }) => id === action.payload),
+        curStop: action.curStop,
       };
     default:
       return state;

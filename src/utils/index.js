@@ -17,6 +17,25 @@ export function getRouteColor(rid) {
   }
 }
 
+export function getDirectionRouteColor(rid) {
+  switch (rid) {
+    case 'ngv-1a':
+      return 'yellow';
+    case 'ngv-1b':
+      return 'blue';
+    case 'ngv-2':
+      return '#ff69b4';
+    case 'ngv-3':
+      return 'darkorange';
+    case 'ngv-4':
+      return 'green';
+    case 'ngv-5':
+      return 'red';
+    default:
+      return '#888';
+  }
+}
+
 export function getZoomScale(zoomLevel) {
   return Math.pow(2, zoomLevel) / 65536;
 }

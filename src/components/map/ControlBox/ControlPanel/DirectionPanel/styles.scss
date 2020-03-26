@@ -1,0 +1,52 @@
+.DirectionPanel {
+  padding: 1em;
+  width: 100vw;
+  max-height: 40vh;
+  overflow: auto;
+}
+
+.PlanDetail {
+  background-color: #fff9;
+  margin-top: 0.5em;
+  padding: 0.2em;
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  border: 0.1em solid transparent;
+  border-left: 1em solid transparent;
+}
+
+.PlanDetail:hover {
+  border-color: var(--tu-red);
+}
+
+.PlanDetail__active {
+  background-color: #fffd;
+  border-left-color: var(--tu-red);
+}
+
+.PlanDetail--icon {
+  display: flex;
+  align-items: center;
+}
+
+.PlanDetail--routeGroup {
+  margin: 0 1em;
+}
+
+.PlanDetail--route {
+  font-size: 11px;
+}
+
+@media only screen and (min-width: 768px) {
+  .PlanDetail {
+    max-width: 50vw;
+  }
+
+  .DirectionPanel {
+    max-height: 85vh;
+    max-width: 40vw;
+    padding: 2em;
+  }
+}

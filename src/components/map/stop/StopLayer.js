@@ -2,10 +2,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { StopMarker } from './StopIcon';
-
+import { LayerGroup } from 'react-leaflet';
 import { fetchStopAction, clickStopAction } from '@/actions/stopAction';
-import { setModeAction } from '@/actions/mapAction';
-import { CP_ETA } from '@/components/map/ControlBox/ControlPanel';
 
 const mapStateToProps = ({ stop }) => ({
   stops: stop.stops,
@@ -19,7 +17,6 @@ const StopLayer = ({ dispatch, stops, iconScale, curStopListen }) => {
   }, []);
   // Handle Click
   const handleStopClick = id => {
-    dispatch(setModeAction(CP_ETA));
     dispatch(clickStopAction(id));
   };
 
@@ -39,7 +36,7 @@ const StopLayer = ({ dispatch, stops, iconScale, curStopListen }) => {
       />
     );
   });
-  return <>{list}</>;
+  return <LayerGroup>{list}</LayerGroup>;
 };
 
 export default connect(mapStateToProps)(StopLayer);

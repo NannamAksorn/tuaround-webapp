@@ -1,9 +1,13 @@
 import { notification } from 'antd';
+import { CP_ETA } from '@/components/map/ControlBox/ControlPanel';
 import tuaInstance from '@/plugins/axios';
 import {
   unsubscribeStopETA,
   subscribeStopETA,
 } from '@/subscribes/ngvSubscribe';
+
+import { setModeAction, setClickLatLonAction } from './mapAction';
+
 export const ADD_STOP = 'ADD_STOP';
 export const SET_STOPS = 'SET_STOPS';
 export const SET_STOP_ETA = 'SET_STOP_ETA';
@@ -59,11 +63,23 @@ export const fetchStopEtaAction = sid => async dispatch => {
 };
 
 export const clickStopAction = payload => (dispatch, getState) => {
-  const curStopListen = getState().stop.curStopListen;
+  const { curStopListen, stops } = getState().stop;
+  // Change Mode
+  dispatch(setModeAction(CP_ETA));
+  // Set map Marker
+  const curStop = stops.find(({ id }) => id === payload);
+  dispatch(
+    setClickLatLonAction({
+      lat: curStop.latlon.x,
+      lng: curStop.latlon.y,
+    }),
+  );
+
   if (curStopListen === payload) return;
   dispatch({
     type: SET_CUR_STOP_LISTEN,
     payload,
+    curStop,
   });
   unsubscribeStopETA(curStopListen);
   dispatch(fetchStopEtaAction(payload));

@@ -1,11 +1,12 @@
 .ControlPanel {
   position: absolute;
   background-color: transparent;
-  z-index: 1900;
+  z-index: 400;
   transition: transform 0.1s ease-in-out;
+  bottom: 0;
 }
 
 .ControlPanel__active {
   display: block;
-  transform: translateY(calc(-100% - 5vh));
+  transform: translateY(-4.9vh);
 }

@@ -4,6 +4,8 @@ import {
   SET_MAP,
   SET_MAP_MARKER,
   SET_MODE,
+  SET_CURRENT_POSITION,
+  SET_MAP_DIRECTION_LAYER,
 } from '@/actions/mapAction';
 
 const initialState = {
@@ -11,6 +13,8 @@ const initialState = {
   mapEl: null,
   mapMarker: null,
   mode: 0,
+  currentPosition: {},
+  directionPlansLayer: null,
 };
 
 function reducer(state = initialState, action) {
@@ -23,6 +27,10 @@ function reducer(state = initialState, action) {
       return { ...state, mapMarker: action.payload };
     case SET_MODE:
       return { ...state, mode: action.payload };
+    case SET_CURRENT_POSITION:
+      return { ...state, currentPosition: action.payload };
+    case SET_MAP_DIRECTION_LAYER:
+      return { ...state, directionPlansLayer: action.payload };
     default:
       return state;
   }
